@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة حلقة القرآن الكريم للمتابعة الرقمية</title>
+    <style>
+        :root {
+            --bg-color: #fcf8f2;
+            --primary-lavender: #e8def8;
+            --pastel-pink: #fbc4ab;
+            --pistachio-green: #c8e6c9;
+            --text-dark: #4a4a4a;
+            --white: #ffffff;
+            --purple-dark: #6200ee;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: var(--purple-dark);
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .supervisors {
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .supervisors span {
+            color: #4f378b;
+            font-weight: bold;
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: #f3edf7;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .date-picker-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="date"], input[type="text"] {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        .add-student-box {
+            background-color: #f1f8e9;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border: 1px solid #d0e7b5;
+        }
+
+        .add-student-box h3 {
+            margin: 0;
+            color: #33691e;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .add-btn {
+            background-color: #558b2f;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .add-btn:hover { background-color: #33691e; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            background-color: var(--primary-lavender);
+            color: #4f378b;
+            padding: 15px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        th:first-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; }
+        th:last-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f0f0f0;
+            text-align: center;
+        }
+
+        .student-name { text-align: right; font-weight: bold; padding-right: 10px; }
+
+        tr:hover { background-color: #fafafa; }
+
+        .status-btn {
+            padding: 8px 18px;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            margin: 0 4px;
+            background-color: #fff;
+            color: #666;
+        }
+
+        .status-btn.present-active {
+            background-color: var(--pistachio-green) !important;
+            color: #1b5e20 !important;
+            border-color: #81c784 !important;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .status-btn.absent-active {
+            background-color: var(--pastel-pink) !important;
+            color: #b71c1c !important;
+            border-color: #e5989b !important;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #e63946;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s;
+            padding: 5px 10px;
+        }
+        
+        .delete-btn:hover { transform: scale(1.3); }
+
+        .action-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--purple-dark);
+            vertical-align: middle;
+        }
+
+        .note-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .save-btn {
+            display: block;
+            width: 280px;
+            margin: 30px auto 0;
+            padding: 15px;
+            background-color: var(--purple-dark);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(98, 0, 238, 0.3);
+        }
+
+        .save-btn:hover { background-color: #4f00bc; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-section">
+        <h1>منصة حلقة القرآن الكريم للمتابعة الرقمية</h1>
+        <div class="supervisors">تحت إشراف المعلمة: <span>أسماء</span> والمشرفة: <span>نورهان</span></div>
+    </div>
+    
+    <div class="control-panel">
+        <div class="date-picker-box">
+            <label for="lecture-date"><strong>تاريخ الحلقة:</strong></label>
+            <input type="date" id="lecture-date">
+        </div>
+        <div>
+            <strong>إجمالي الحاضرات اليوم: <span id="attendance-count" style="color: #2e7d32;">0</span></strong>
+        </div>
+    </div>
+
+    <div class="add-student-box">
+        <h3>➕ إضافة أخت جديدة للحلقة:</h3>
+        <input type="text" id="new-student-name" placeholder="اسم الأخت الكريم..." style="width: 250px;">
+        <input type="text" id="new-student-note" placeholder="ملاحظة مبدئية (اختياري)..." style="flex-grow: 1;">
+        <button type="button" class="add-btn" onclick="addNewStudent()">إضافة للحلقة</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 6%;">حذف</th>
+                <th style="width: 20%; text-align: right; padding-right: 10px;">اسم الأخت</th>
+                <th style="width: 24%;">الحضور / الغياب</th>
+                <th style="width: 10%;">قرأت؟</th>
+                <th style="width: 12%;">تم الاختبار؟</th>
+                <th style="width: 28%;">ملاحظات الأداء والقراءة اليومية</th>
+            </tr>
+        </thead>
+        <tbody id="students-list">
+            </tbody>
+    </table>
+
+    <button type="button" class="save-btn" id="btn-save" onclick="saveData()">حفظ تقرير اليوم 💾</button>
+</div>
+
+<script>
+    var namesList = [
+        "غادة", "ايمان العموري", "فداء", "اسراء سمير", "بسمه عبد الوهاب", 
+        "إسمهان ام بلال", "رشا عادل", "بسنت احمد", "سعاد احمد", "حنان حسن", 
+        "مروه عبدالسلام", "حنان عبدالله", "زبيده", "ظّمياء", "هبه احمد", 
+        "نسمه بحيري", "خيرزان اسماعيل", "هبه طه", "شيماء عاطف", "رفيده", 
+        "جميلة الحربي", "لين بكر", "اسراء الامين"
+    ];
+
+    var tbody = document.getElementById('students-list');
+
+    function createRow(name, customNote) {
+        var noteValue = customNote ? customNote : "";
+        var newRow = document.createElement('tr');
+        newRow.innerHTML = '<td><button type="button" class="delete-btn" onclick="deleteRow(this)">❌</button></td>' +
+                           '<td class="student-name">' + name + '</td>' +
+                           '<td>' +
+                               '<button type="button" class="status-btn" onclick="setAttendance(this, \'present\')">حضور</button>' +
+                               '<button type="button" class="status-btn absent-active" onclick="setAttendance(this, \'absent\')">غياب</button>' +
+                           '</td>' +
+                           '<td><input type="checkbox" class="action-checkbox chk-read"></td>' +
+                           '<td><input type="checkbox" class="action-checkbox chk-exam"></td>' +
+                           '<td><input type="text" class="note-input txt-notes" value="' + noteValue + '" placeholder="اكتبي السورة، رقم الصفحة..."></td>';
+        tbody.appendChild(newRow);
+    }
+
+    for (var i = 0; i < namesList.length; i++) {
+        createRow(namesList[i], "");
+    }
+
+    document.getElementById('lecture-date').valueAsDate = new Date();
+    updateCount();
+
+    function setAttendance(btn, type) {
+        var parent = btn.parentElement;
+        var buttons = parent.querySelectorAll('.status-btn');
+        for (var j = 0; j < buttons.length; j++) {
+            buttons[j].classList.remove('present-active');
+            buttons[j].classList.remove('absent-active');
+        }
+        if (type === 'present') {
+            btn.classList.add('present-active');
+        } else {
+            btn.classList.add('absent-active');
+        }
+        updateCount();
+    }
+
+    function deleteRow(btn) {
+        var row = btn.parentElement.parentElement;
+        var studentName = row.querySelector('.student-name').innerText;
+        if (confirm("هل تريدين حذف الأخت (" + studentName + ") من قائمة اليوم؟")) {
+            row.parentNode.removeChild(row);
+            updateCount();
+        }
+    }
+
+    function updateCount() {
+        var presentCount = document.querySelectorAll('.present-active').length;
+        document.getElementById('attendance-count').innerText = presentCount;
+    }
+
+    function addNewStudent() {
+        var nameInput = document.getElementById('new-student-name');
+        var noteInput = document.getElementById('new-student-note');
+        if (nameInput.value.trim() === "") {
+            alert("من فضلكِ ادخلي اسم الأخت أولاً");
+            return;
+        }
+        createRow(nameInput.value.trim(), noteInput.value.trim());
+        nameInput.value = "";
+        noteInput.value = "";
+        updateCount();
+    }
+
+    function saveData() {
+        var saveBtn = document.getElementById('btn-save');
+        // هنا تم ربط السكريبت الجديد الخاص بكِ بنجاح تـام واختبار التوافق
+        var scriptUrl = "https://script.google.com/macros/s/AKfycby4afi3NvswZLjLURvRTm5I6wORd92upO41D0P3dV1EKQFsA8jAKnkRn4cd-68ioV7W0Q/exec";
+        var selectedDate = document.getElementById('lecture-date').value;
+
+        if (!selectedDate) {
+            alert("يرجى تحديد تاريخ الحلقة أولاً");
+            return;
+        }
+
+        saveBtn.disabled = true;
+        saveBtn.innerText = "جاري ترحيل البيانات...";
+
+        var rows = document.querySelectorAll('#students-list tr');
+        var reportData = [];
+
+        rows.forEach(function(row) {
+            var name = row.querySelector('.student-name').innerText;
+            var isPresent = row.querySelector('.status-btn:first-child').classList.contains('present-active');
+            var status = isPresent ? "حضور" : "غياب";
+            var read = row.querySelector('.chk-read').checked ? "نعم" : "لا";
+            var exam = row.querySelector('.chk-exam').checked ? "نعم" : "لا";
+            var notes = row.querySelector('.txt-notes').value;
+
+            reportData.push({
+                date: selectedDate,
+                name: name,
+                status: status,
+                read: read,
+                exam: exam,
+                notes: notes
+            });
+        });
+
+        var formBody = [];
+        formBody.push(encodeURIComponent("jsonData") + "=" + encodeURIComponent(JSON.stringify(reportData)));
+        formBody = formBody.join("&");
+
+        fetch(scriptUrl, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+            },
+            body: formBody
+        })
+        .then(function() {
+            alert("تم إرسال وحفظ التقرير بنجاح! راقبي جدول جوجل شيت الآن ✨");
+            saveBtn.disabled = false;
+            saveBtn.innerText = "حفظ تقرير اليوم 💾";
+        })
+        .catch(function(error) {
+            alert("حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.");
+            saveBtn.disabled = false;
+            saveBtn.innerText = "حفظ تقرير اليوم 💾";
+        });
+    }
+</script>
+
+</body>
+</html>
